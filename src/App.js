@@ -13,7 +13,7 @@ import './App.css';
 const particlesOptions = {
   particles: {
     number: {
-      value: 150,
+      value: 80,
       density: {
         enable: true,
         value_area: 800
@@ -63,7 +63,7 @@ class App extends Component {
     this.setState({imageUrl: this.state.input});
     app.models
       .predict(
-        Clarifai.FACE_DETECT_MODEL, 
+        Clarifai.FACE_DETECT_MODEL,
         this.state.input)
         .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
         .catch(err => console.error(err));
@@ -87,17 +87,17 @@ class App extends Component {
         params={particlesOptions}
       />
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
-      { route === 'home' 
+      { route === 'home'
       ? <div>
           <Logo />
           <Rank />
-          <ImageLinkForm 
-            onInputChange={this.onInputChange} 
+          <ImageLinkForm
+            onInputChange={this.onInputChange}
             onButtonSubmit={this.onButtonSubmit} />
           <FaceRecognition box={box} imageUrl={imageUrl} />
         </div>
       : (
-        route === 'signin' 
+        route === 'signin'
         ? <Signin onRouteChange={this.onRouteChange} />
         : <Register onRouteChange={this.onRouteChange} />
         )
