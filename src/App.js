@@ -6,21 +6,21 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Register from './components/Register/Register';
 import Signin from './components/Signin/Signin';
 import Rank from './components/Rank/Rank';
-import Particles from 'react-particles-js';
+// import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import './App.css';
 
-const particlesOptions = {
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    }
-  }
-}
+// const particlesOptions = {
+//   particles: {
+//     number: {
+//       value: 80,
+//       density: {
+//         enable: true,
+//         value_area: 800
+//       }
+//     }
+//   }
+// }
 
 const app = new Clarifai.App({
   apiKey: 'f36fa2b9c6414e6b8407a4f4e34a1a6a'
@@ -37,6 +37,12 @@ class App extends Component {
       isSignedIn: false,
     }
   }
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/')
+  //     .then(response => response.json())
+  //     .then(console.log)
+  // }
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -83,13 +89,13 @@ class App extends Component {
 
     return (
       <div className="App">
-      <Particles className="particles"
+      {/* <Particles className="particles"
         params={particlesOptions}
-      />
+      /> */}
       <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
+      <Logo />
       { route === 'home'
       ? <div>
-          <Logo />
           <Rank />
           <ImageLinkForm
             onInputChange={this.onInputChange}
